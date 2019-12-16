@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="dash-content">
+    <div class="container-fluid">
+
+        <div class='row'>
+            <div class="col-xl-12">
+                <div class="card-header bg-primary text-white">
+
+                    <div class="spur-card-icon">
+                        <i class="fas fa-chart-bar"></i> <strong>{{ticker_}}の価格チャート</strong>
+                    </div>
+
+                </div>
+                <div class="card-body spur-card-body-chart">
+                    <canvas id="spurChartjsBar"></canvas>
+                    <script>
+                        var plot_index = ['{{ plot_index[0][11:16]}}', '{{ plot_index[1][11:16]}}',
+                            '{{ plot_index[2][11:16]}}', '{{ plot_index[3][11:16]}}',
+                            '{{ plot_index[4][11:16]}}', '{{ plot_index[5][11:16]}}', '{{ plot_index[6][11:16]}}',
+                            '{{ plot_index[7][11:16]}}', '{{ plot_index[8][11:16]}}', '{{ plot_index[9][11:16]}}',
+                            '{{ plot_index[10][11:16]}}',
+                            '{{ plot_index[11][11:16]}}', '{{ plot_index[12][11:16]}}',
+                            '{{ plot_index[13][11:16]}}',
+                            '{{ plot_index[14][11:16]}}', '{{ plot_index[15][11:16]}}'
+                        ];
+                        var plot_price_data = '{{pricedata}}'.slice(1, -1).split(',');
+                        var ctx = document.getElementById("spurChartjsBar");
+
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: plot_index,
+                                datasets: [{
+                                        data: plot_price_data,
+                                        label: '{{ticker_}} pricedata',
+                                        borderWidth: 3,
+                                    },
+                                    {
+                                        label: '25minites SMA',
+                                        data: '{{sma_short}}'.slice(1, -1).split(','),
+                                        fill: false,
+                                        borderWidth: 1,
+
+                                    },
+                                    {
+                                        label: '75minites SMA',
+                                        data: '{{sma_long}}'.slice(1, -1).split(','),
+                                        fill: false,
+                                        borderWidth: 1,
+                                        borderColor: "green"
+                                    }
+                                ]
+                            },
+                            options: {
+                                legend: {
+                                    display: true,
+                                },
+                                plugins: {
+                                    colorschemes: {
+                                        scheme: 'brewer.Paired10'
+                                    }
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: Math.min.apply(null, plot_price_data) *
+                                                0.99, // 譛蟆丞､
+                                            max: Math.max.apply(null, plot_price_data) *
+                                                1.01, // 譛螟ｧ蛟､
+                                            beginAtZero: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <p class="mb-5">
+            <div class='row'>
+                <div class="col-xl-12">
+                    <div class="card-header bg-primary text-white">
+                        <strong>{{ticker_}}のRSI推移(最新：{{last_rsi}})</strong>
+                    </div>
+                    <div class="card-body spur-card-body-chart">
+                        <canvas id="spurChartjs_rsi"></canvas>
+                        <script>
+                            var plot_index = ['{{ plot_index[0][11:16]}}', '{{ plot_index[1][11:16]}}',
+                                '{{ plot_index[2][11:16]}}', '{{ plot_index[3][11:16]}}',
+                                '{{ plot_index[4][11:16]}}', '{{ plot_index[5][11:16]}}',
+                                '{{ plot_index[6][11:16]}}',
+                                '{{ plot_index[7][11:16]}}', '{{ plot_index[8][11:16]}}',
+                                '{{ plot_index[9][11:16]}}',
+                                '{{ plot_index[10][11:16]}}',
+                                '{{ plot_index[11][11:16]}}', '{{ plot_index[12][11:16]}}',
+                                '{{ plot_index[13][11:16]}}',
+                                '{{ plot_index[14][11:16]}}', '{{ plot_index[15][11:16]}}'
+                            ];
+                            var plot_price_data = '{{pricedata}}'.slice(1, -1).split(',');
+                            var plot_rsi = '{{rsi}}'.slice(1, -1).split(',')
+                            var ctx = document.getElementById("spurChartjs_rsi");
+
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: plot_index,
+                                    datasets: [{
+                                        data: plot_rsi,
+                                        borderWidth: 2.5,
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    plugins: {
+                                        colorschemes: {
+                                            scheme: 'brewer.Paired12'
+                                        }
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                min: 0,
+                                                max: 100,
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='row'>
+                <div class="col-xl-12">
+                    <div class="card-header bg-primary text-white">
+                        <strong>{{ticker_}}のMACD推移(最新：{{last_macd}})</strong>
+                    </div>
+                    <div class="card-body spur-card-body-chart">
+                        <canvas id="spurChartjs_macd"></canvas>
+                        <script>
+                            var plot_index = ['{{ plot_index[0][11:16]}}', '{{ plot_index[1][11:16]}}',
+                                '{{ plot_index[2][11:16]}}', '{{ plot_index[3][11:16]}}',
+                                '{{ plot_index[4][11:16]}}', '{{ plot_index[5][11:16]}}',
+                                '{{ plot_index[6][11:16]}}',
+                                '{{ plot_index[7][11:16]}}', '{{ plot_index[8][11:16]}}',
+                                '{{ plot_index[9][11:16]}}',
+                                '{{ plot_index[10][11:16]}}',
+                                '{{ plot_index[11][11:16]}}', '{{ plot_index[12][11:16]}}',
+                                '{{ plot_index[13][11:16]}}',
+                                '{{ plot_index[14][11:16]}}', '{{ plot_index[15][11:16]}}'
+                            ];
+                            var plot_macd = '{{macd}}'.slice(1, -1).split(',');
+                            var ctx = document.getElementById("spurChartjs_macd");
+
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: plot_index,
+                                    datasets: [{
+                                        data: plot_macd,
+                                        borderWidth: 2.5,
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    plugins: {
+                                        colorschemes: {
+                                            scheme: 'brewer.Paired12'
+                                        }
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                min: Math.min.apply(null, plot_macd) *
+                                                    0.99, // 譛蟆丞､
+                                                max: Math.max.apply(null, plot_macd) *
+                                                    1.01, // 譛螟ｧ蛟､
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-xl-12">
+                    <div class="card-header bg-primary text-white">
+                        <strong>{{ticker_}}のMomentum推移(最新：{{last_mom}})</strong>
+                    </div>
+                    <div class="card-body spur-card-body-chart">
+                        <canvas id="spurChartjs_mom"></canvas>
+                        <script>
+                            var plot_index = ['{{ plot_index[0][11:16]}}', '{{ plot_index[1][11:16]}}',
+                                '{{ plot_index[2][11:16]}}', '{{ plot_index[3][11:16]}}',
+                                '{{ plot_index[4][11:16]}}', '{{ plot_index[5][11:16]}}',
+                                '{{ plot_index[6][11:16]}}',
+                                '{{ plot_index[7][11:16]}}', '{{ plot_index[8][11:16]}}',
+                                '{{ plot_index[9][11:16]}}',
+                                '{{ plot_index[10][11:16]}}',
+                                '{{ plot_index[11][11:16]}}', '{{ plot_index[12][11:16]}}',
+                                '{{ plot_index[13][11:16]}}',
+                                '{{ plot_index[14][11:16]}}', '{{ plot_index[15][11:16]}}'
+                            ];
+                            var plot_mom = '{{mom}}'.slice(1, -1).split(',');
+                            var ctx = document.getElementById("spurChartjs_mom");
+
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: plot_index,
+                                    datasets: [{
+                                        data: plot_mom,
+                                        borderWidth: 2.5,
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    plugins: {
+                                        colorschemes: {
+                                            scheme: 'brewer.Paired12'
+                                        }
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                min: Math.min.apply(null, plot_mom) *
+                                                    0.99, // 譛蟆丞､
+                                                max: Math.max.apply(null, plot_mom) *
+                                                    1.01, // 譛螟ｧ蛟､
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+    </div>
+</main>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+{% endblock %}

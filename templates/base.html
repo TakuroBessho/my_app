@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/spur.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="static/js/chart-js-config.js"></script>
+    <script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
+    <title>Crypto-Analysis.com</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- adesense -->
+</head>
+<style>
+    #loader-bg {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        background: #000;
+        z-index: 1;
+    }
+
+    #loader {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -100px;
+        text-align: center;
+        color: #fff;
+        z-index: 2;
+    }
+
+    .dash_link {
+        color: black;
+        /*dashbord link color is Black*/
+    }
+</style>
+
+<div id="loader-bg">
+    <div id="loader">
+        <img src="static/img/loading.gif" width="80" height="80" alt="Now Loading..." />
+        <p>Now Loading...</p>
+    </div>
+</div>
+
+<body>
+    <div class="dash">
+        <div class="dash-nav sticky-top dash-nav-dark">
+            <header>
+                <a href="/" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="/" class="spur-logo"><i class="fas fa-bolt"></i><span>CryptoAnalysis</span></a>
+            </header>
+            <p class='mt-3'>
+                <nav class="dash-nav-list">
+                    <div class="dash-nav-dropdown">
+                        <a href="/" class="dash-nav-item dash-nav-dropdown-toggle">
+                            <i class="fas fa-home"></i> Home </a>
+                    </div>
+                    <div class="dash-nav-dropdown">
+                        <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                            <i class="fas fa-chart-bar"></i> Charts </a>
+                        <div class="dash-nav-dropdown-menu">
+                            <div class="dash-nav-dropdown ">
+                                <a href="#" class="dash-nav-dropdown-item dash-nav-dropdown-toggle">
+                                    Crypto Currency</a>
+                                <div class="dash-nav-dropdown-menu">
+                                    <a href="/indicator_btc_5min" class="dash-nav-dropdown-item">Bitcoin</a>
+                                    <a href="/indicator_eth_5min" class="dash-nav-dropdown-item">Ethereum</a>
+                                    <a href="/indicator_xrp_5min" class="dash-nav-dropdown-item">Ripple</a>
+                                    <a href="/indicator_bsv_5min" class="dash-nav-dropdown-item">BitcoinSV</a>
+                                    <a href="/indicator_bnb_5min" class="dash-nav-dropdown-item">BinanceCoin</a>
+                                    <a href="/indicator_tpay_5min" class="dash-nav-dropdown-item">Tokenpay</a>
+                                </div>
+                                <a href="#" class="dash-nav-dropdown-item dash-nav-dropdown-toggle">
+                                    Stock Markets</a>
+                                <div class="dash-nav-dropdown-menu">
+                                    <a href="/indicator_NIKKEI225_5min" class="dash-nav-dropdown-item">DJIA</a>
+                                    <a href="/indicator_DJIA_5min" class="dash-nav-dropdown-item">NIKKEI225</a>
+                                    <a href="/indicator_GOLD_5min" class="dash-nav-dropdown-item">GOLD</a>
+                                    <a href="/indicator_worldindex_5min" class="dash-nav-dropdown-item">VT</a>
+                                    <a href="/indicator_vix_5min" class="dash-nav-dropdown-item">VIX</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="dash-nav-dropdown ">
+                        <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                            <i class="fas fa-cube"></i> Machine Learning </a>
+                        <div class="dash-nav-dropdown-menu">
+                            <a href="/deeplearning" class="dash-nav-dropdown-item">Deep Learning</a>
+                            <a href="/data_export" class="dash-nav-dropdown-item">Data Export</a>
+                        </div>
+                    </div>
+                    <div class="dash-nav-dropdown">
+                        <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                            <i class="fas fa-file"></i> Auto Trade </a>
+                        <div class="dash-nav-dropdown-menu">
+                            <a href="/trade_performance" class="dash-nav-dropdown-item">Performance</a>
+                            <a href="content.html" class="dash-nav-dropdown-item">Trading strategy</a>
+                            <a href="/calc_backtest" class="dash-nav-dropdown-item">Back Test</a>
+                            <a href="login.html" class="dash-nav-dropdown-item">Purchase bot </a>
+                        </div>
+                    </div>
+                    <div class="dash-nav-dropdown">
+                        <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                            <i class="fas fa-info"></i> About </a>
+                        <div class="dash-nav-dropdown-menu">
+                            <a href="https://github.com/HackerThemes/spur-template" target="_blank"
+                                class="dash-nav-dropdown-item">GitHub</a>
+                            <a href="http://hackerthemes.com" target="_blank"
+                                class="dash-nav-dropdown-item">HackerThemes</a>
+                        </div>
+                    </div>
+                </nav>
+        </div>
+        <div class="dash-app">
+            <header class="dash-toolbar">
+                <a href="#!" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <div class="flex-fill text-right border-0">
+                    {% if user_name == [] %}
+                    <strong>
+                        <span style="font-size: 16px;">
+                            <button type="button" class="btn btn-primary" style='border-radius: 50px;'><a
+                                    href="/user_login" class='text-white'>ログイン</a></button>
+                        </span>
+                    </strong>
+                    {% else %}
+                    <strong>
+                        <span style="font-size: 16px;">
+                            こんにちは{{user_name}}さん！
+                        </span>
+                    </strong>
+                    {% endif %}
+                </div>
+
+                <div class="tools">
+                    <a href="https://github.com/HackerThemes/spur-template" target="_blank" class="tools-item">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#!" class="tools-item">
+                        <i class="fas fa-bell"></i>
+                        <i class="tools-item-count">4</i>
+                    </a>
+                    <div class="dropdown tools-item">
+                        <a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                            {% if user_name != [] %}
+                            <a class="dropdown-item" href="/profile">Profile</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                            {% else %}
+                            <a class="dropdown-item" href="/login">login</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- メインコンテンツここから -->
+            {% block content %}
+            {% endblock %}
+            <!-- メインコンテンツここまで -->
+</body>
+
+<script src="static/js/spur.js"></script>
+
+</html>

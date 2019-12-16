@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" type="text/css" href="static/css/jquery.datetimepicker.min.css">
+<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/bootstrap-datepicker.ja.min.js"></script>
+<p class="mt-3"></p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mt-3 mb-3">エクスポート対象期間</h3>
+        </div>
+        <p class="mt-3"></p>
+        <div class="card-body">
+            <!-- ここから入力フォーム -->
+            <form name="export" id="export_form" action="/export_csv" method="GET" onsubmit="return formCheck()">
+                <!-- 出力する通貨名または金融商品名 -->
+                <select name="id_">
+                    <option value='1'>ビットコイン</option>
+                    <option value="サンプル2">サンプル2</option>
+                    <option value="サンプル3">サンプル3</option>
+                </select>
+                <p class="mt-3"></p>
+                <!-- エクスポート期間の設定 -->
+                <div class="form-group" id="datepicker-daterange">
+                    <div class="form-inline">
+                        <label>開始日：</label>
+                        <input type="text" class="form-control" id="date_sample" name="start" autocomplete="off">
+                        <span class="input-group-addon p-2">～</span>
+                        <label>終了日：</label>
+                        <input type="text" class="form-control" id="date_sample2" name="end" autocomplete="off">
+                    </div>
+                </div>
+                <p class="mt-2"></p>
+
+                <!-- 出力形式の指定 -->
+                <h4 class="mt-5 mb-4"><strong>出力形式</strong></h4>
+                <div class="mb-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="choise_pattern" value="0" id="lightcourse"
+                            checked>
+                        <label class="form-check-label" for="lightcourse">
+                            5分おきのデータを出力する
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="choise_pattern" value="1"
+                            id="standardcourse">
+                        <label class="form-check-label" for="standardcourse">
+                            1日単位のデータを出力する
+                        </label>
+                    </div>
+                    <p class='mb-5'></p>
+                </div>
+            </form>
+            <!-- 入力フォームここまで -->
+            <!-- エクスポートボタン -->
+            <button id="export_btn" class="btn btn-secondary">エクスポート</button>
+
+            {# エクスポート結果を表示するエリア#}
+            <div id="result_area" class="mt-4">
+
+                <div class="test"></div>
+            </div>
+
+            <!-- トーストメッセージ -->
+            <div class="toast toast-body toast-group bg-gray p-0 d-flex" id="toast_learning_start" role="alert"
+                aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="8000">
+                <p class="p-2 m-2 font-weight-bold" id="toast_message"></p>
+                <button class="close p-2" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            {# 読み込んだエクスポート期間の数値を保持する隠しForm #}
+            <input id="export_term" type="text" value="{{ export_term }}" style="display:none;">
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- cryptoanalysis_top -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5249770121737505"
+                data-ad-slot="1959283462" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+            <!-- ここからjavascriptでの画面制御 -->
+            <script src="/static/js/data_export.js?7"></script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

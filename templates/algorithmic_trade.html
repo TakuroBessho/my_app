@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="dash-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><strong>Todays Trade Signal</strong></h2>
+                    </div>
+                    <div class="card-body">
+                        今日の自動取引BOT1号のポジションはビットコインを<strong><span
+                                style="font-size: 28px;">{{today_position}}</span></strong>です。
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="static/img/bf_icon.jpg" alt="" width="50" height="50">
+                        自動取引BOT1号の直近のトレード成績
+                    </div>
+                    <div class="card-body">
+
+                        <div class="card-body spur-card-body-chart">
+                            <canvas id="spurChartjsBar"></canvas>
+                            <script>
+                                var ctx = document.getElementById("spurChartjsBar").getContext('2d');
+                                var plot_index1 = plot_index = ['{{ plot_index[0]}}', '{{ plot_index[1]}}',
+                                    '{{ plot_index[2]}}', '{{ plot_index[3]}}',
+                                    '{{ plot_index[4]}}',
+                                    '{{ plot_index[5]}}', '{{ plot_index[6][5:16]}}'
+                                ];
+                                var trade_data1 = '{{tradedata1}}'.slice(1, -1).split(',');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: plot_index1,
+                                        datasets: [{
+                                            label: 'Blue',
+                                            data: trade_data1,
+                                            backgroundColor: window.chartColors.primary,
+                                            borderColor: 'transparent'
+                                        }]
+                                    },
+                                    options: {
+                                        legend: {
+                                            display: false
+                                        },
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: false
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                                // //idがcanvasのcanvasタグを取得
+                                // var canvas = document.getElementById("canvas");
+
+                                // //idがparent-canvasのcanvasタグを取得
+                                // var canvas_pw = $('#parent-canvas').width();
+                                // var canvas_ph = $('#parent-canvas').height();
+
+                                // //widthとheightを設定
+                                // canvas.setWidth(canvas_pw);
+                                // canvas.setHeight(canvas_ph);
+                            </script>
+
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href=''>通算成績</a> <a href='/backtest_bitflyer01'>ロジック</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <p>
+        <main>
+            </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+            </script>
+            <script src="static/js/spur.js"></script>
+
+
+            {% endblock %}

@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="wrap">
+    <main class="dash-content">
+        <div class="container-fluid">
+            <p class="p-1 m-2">
+                <!-- crypto_currency_table -->
+                <div class="card">
+                    <div class="card-header secondary mb-3 text-center">
+                        <h1>
+                            <img src="static/img/dashbord_icon.png" alt="" width="40" height="40"> Crypto
+                            Currency</h1>
+                    </div>
+                    <div class="card-body">
+                        <!-- bodyのヘッダー -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0">
+                            </li>
+                            <li class="class= list-group-item border border-0"><span style="font-size: 24px;">通貨名
+                            </li>
+
+                            <li class="list-group-item flex-fill text-right border-0"><span
+                                    style="font-size: 24px;">価格</span>
+
+
+                                <span style="font-size: 16px;">
+                                    (前日比)
+                                </span>
+
+                            </li>
+                        </ul>
+                        <!-- BTC -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/bitcoin_icon.jpg" alt=""
+                                    width="40" height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_btc_5min"><u>Bitcoin</u><span
+                                            style="font-size: 18px;">
+                                            (BTC)</span></a>
+                            </li>
+
+                            <li class="list-group-item flex-fill text-right border-0"><span
+                                    style="font-size: 24px;">￥{{btc}}</span>
+                                {% if btc24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{btc24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{btc24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+                        <!-- ETH -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/ethereum_icon.png" alt=""
+                                    width="40" height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_eth_5min"><u>Ethereum</u><span
+                                            style="font-size: 18px;">
+                                            (ETH)</span></a></span>
+                            </li>
+
+                            <li class="list-group-item flex-fill border-0 text-right"><span
+                                    style="font-size: 24px;">￥{{eth}}</span>
+                                {% if eth24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{eth24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{eth24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+                        <!-- XRP -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/ripple_icon.png" alt="" width="40"
+                                    height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_xrp_5min"><u>Ripple</u></a></span><span
+                                    style="font-size: 18px;">
+                                    (XRP)</span>
+                            </li>
+                            <li class="list-group-item border-0 flex-fill text-right"><span
+                                    style="font-size: 24px;">￥{{xrp}}</span>
+                                {% if xrp24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{xrp24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{xrp24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+                        <!-- BSV -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/bsv_icon.jpg" alt="" width="40"
+                                    height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_bsv_5min"><u>BitcoinSV</u></a></span><span
+                                    style="font-size: 18px;">
+                                    (BSV)</span>
+                            </li>
+
+                            <li class="list-group-item border-0 flex-fill text-right"><span
+                                    style="font-size: 24px;">￥{{bsv}}</span>
+                                {% if bsv24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{bsv24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{bsv24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+                        <!-- BNB -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/bnb_icon.png" alt="" width="40"
+                                    height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_bnb_5min"><u>Binance Coin</u></a></span><span
+                                    style="font-size: 18px;">
+                                    (BNB)</span>
+                            </li>
+
+                            <li class="list-group-item border-0 flex-fill text-right"><span
+                                    style="font-size: 24px;">￥{{bnb}}</span>
+                                {% if bnb24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{bnb24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{bnb24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+                        <!-- Tokenpay -->
+                        <ul class="list-group list-group-horizontal list-group-flush">
+                            <li class="list-group-item border-0"><img src="static/img/tpay_icon.png" alt="" width="40"
+                                    height="40">
+                            </li>
+                            <li class="class= list-group-item border border-0 mt-1"><span style="font-size: 24px;"><a
+                                        class="dash_link" href="/indicator_tpay_5min"><u>Tokenpay</u></a></span><span
+                                    style="font-size: 18px;">
+                                    (TPAY)</span>
+                            </li>
+
+                            <li class="list-group-item border-0 flex-fill text-right"><span
+                                    style="font-size: 24px;">￥{{tpay}}</span>
+                                {% if tpay24 > 0 %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="#2EFE2E">↑{{tpay24}}</font>
+                                </span>
+                                %)
+                                {% else %}
+                                (
+                                <span style="font-size: 16px;">
+                                    <font color="red">↓{{tpay24}}</font>
+                                </span>
+                                %)
+                                {% endif %}</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <p class="p-3 m-2">
+                    <!-- traditional_marker_table -->
+                    <div class="card">
+                        <div class="card-header secondary mb-3 text-center">
+                            <h1><i class="fas fa-chart-line"></i> Traditional Markets</h1>
+                        </div>
+                        <div class="card-body">
+                            <!-- bodyのヘッダー -->
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0">
+                                </li>
+                                <li class="class= list-group-item border border-0"><span style="font-size: 24px;">銘柄
+                                </li>
+
+                                <li class="list-group-item flex-fill text-right border-0"><span
+                                        style="font-size: 24px;">価格</span>
+
+
+                                    <span style="font-size: 16px;">
+                                        (前日比)
+                                    </span>
+
+                                </li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0"><img src="static/img/stock_icon.png" alt=""
+                                        width="50" height="50">
+                                </li>
+                                <li class="class= list-group-item border border-0 mt-1"><span
+                                        style="font-size: 24px;"><a class="dash_link"
+                                            href="/indicators_DJIA_day"><u>Dow</u></a></span>
+                                </li>
+                                <li class="list-group-item border-0 flex-fill text-right"><span
+                                        style="font-size: 24px;">＄{{djia}}</span>
+                                    {% if djia24 > 0 %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="#2EFE2E">↑{{djia24}}</font>
+                                    </span>
+                                    %)
+                                    {% else %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="red">↓{{djia24}}</font>
+                                    </span>
+                                    %)
+                                    {% endif %}</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0"><img src="static/img/stock_icon.png" alt=""
+                                        width="50" height="50">
+                                </li>
+                                <li class="class= list-group-item border border-0 mt-1"><span
+                                        style="font-size: 24px;"><a class="dash_link"
+                                            href="/indicators_N225_day"><u>NIKKEI225</u></a></span>
+                                </li>
+                                <li class="list-group-item border-0 flex-fill text-right"><span
+                                        style="font-size: 24px;">￥{{N225}}</span>
+                                    {% if N22524 > 0 %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="#2EFE2E">↑{{N22524}}</font>
+                                    </span>
+                                    %)
+                                    {% else %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="red">↓{{N22524}}</font>
+                                    </span>
+                                    %)
+                                    {% endif %}</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0"><img src="static/img/stock_icon.png" alt=""
+                                        width="50" height="50">
+                                </li>
+                                <li class="class= list-group-item border border-0 mt-1"><span
+                                        style="font-size: 24px;"><a class="dash_link"
+                                            href="/indicators_gold"><u>GOLD</u></a></span>
+                                </li>
+                                <li class="list-group-item border-0 flex-fill text-right"><span
+                                        style="font-size: 24px;">￥{{gold}}</span>
+                                    {% if gold24 > 0 %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="#2EFE2E">↑{{gold24}}</font>
+                                    </span>
+                                    %)
+                                    {% else %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="red">↓{{gold24}}</font>
+                                    </span>
+                                    %)
+                                    {% endif %}</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0"><img src="static/img/stock_icon.png" alt=""
+                                        width="50" height="50">
+                                </li>
+                                <li class="class= list-group-item border border-0 mt-1"><span
+                                        style="font-size: 24px;"><a class="dash_link"
+                                            href="/indicators_vt"><u>VT</u></a></span>
+                                </li>
+                                <li class="list-group-item border-0 flex-fill text-right"><span
+                                        style="font-size: 24px;">￥{{vt}}</span>
+                                    {% if vt24 > 0 %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="#2EFE2E">↑{{vt24}}</font>
+                                    </span>
+                                    %)
+                                    {% else %}
+                                    (
+                                    <span style="font-size: 16px;">
+                                        <font color="red">↓{{vt24}}</font>
+                                    </span>
+                                    %)
+                                    {% endif %}</li>
+                            </ul>
+                        </div>
+                    </div>
+        </div>
+        <div class="row dash-row">
+            <div class="col-xl-6">
+                ※暗号通貨の方は5分おき
+                ※株式市場は１日ごとに終値を更新
+
+
+            </div>
+            <div class="col-xl-6">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-9">
+
+            </div>
+            <div class="col-xl-3">
+
+            </div>
+        </div>
+</div>
+<main>
+    </div>
+    </div>
+    </div>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <!--デフォルトのJQUERY(一応残しているだけ) <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script> -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(function () {
+            var h = $(window).height();
+
+            $('#wrap').css('display', 'none');
+            $('#loader-bg ,#loader').height(h).css('display', 'block');
+        });
+
+        $(window).on('load', function () { //全ての読み込みが完了したら実行
+            $('#loader-bg').delay(900).fadeOut(800);
+            $('#loader').delay(600).fadeOut(300);
+            $('#wrap').css('display', 'block');
+        });
+
+        //10秒たったら強制的にロード画面を非表示
+        $(function () {
+            setTimeout('stopload()', 500);
+        });
+
+        function stopload() {
+            $('#wrap').css('display', 'block');
+            $('#loader-bg').delay(900).fadeOut(800);
+            $('#loader').delay(600).fadeOut(300);
+        }
+    </script>
+    {% endblock %}
