@@ -10,8 +10,8 @@
 <p dir="auto"><strong>・Linux(Centos7)</strong></p>
 <p dir="auto"><strong>・Appache</strong></p>
 <p dir="auto"><strong>・wsgi</strong></p>
-<p dir="auto"><strong>・bootstrap</strong></p>
-<p dir="auto"><strong>・jquery</strong></p>
+<p dir="auto"><strong>・bootstrap4</strong></p>
+<p dir="auto"><strong>・jquery3.4</strong></p>
 <p dir="auto"><strong>・Vscode</strong></p>
 <p dir="auto"> </p>
 <p dir="auto"> </p>
